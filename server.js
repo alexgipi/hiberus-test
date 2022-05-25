@@ -6,6 +6,7 @@ import {connectDB} from './config/db.js';
 const app = express();
 
 const port = process.env.PORT;
+const DB_URI = `${process.env.DB_URI}`;
 
 import {authRoutes} from './app/routes/auth.js';
 import {userRoutes} from './app/routes/user.js';
@@ -44,4 +45,4 @@ app.listen(port, () => {
     console.log("Servidor corriendo en el puerto " + port)
 })
 
-connectDB();
+connectDB(DB_URI);

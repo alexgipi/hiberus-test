@@ -15,4 +15,5 @@ router.get(`/${path}/:limit?/:page?`, [authMiddleware, cacheInit], controller.ge
 
 router.put(`/${path}/:id`, authMiddleware, validateUpdateUser, controller.updateUser);
 router.delete(`/${path}/:id`, authMiddleware, controller.deleteUser);
+
 export {router as userRoutes};

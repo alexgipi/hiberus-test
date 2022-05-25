@@ -33,7 +33,7 @@ const getUsers = async (req,res) => {
 
 	skip = skip * limit;
     try {
-        const users = await User.find({}).skip(skip).limit(Number(limit));
+        const users = await User.find({}).skip(skip).limit(Number(limit)).sort('-createdAt');
 
 
         res.status(200).send({users});
@@ -78,9 +78,8 @@ const deleteUser = async (req,res) => {
 
 
 
-const createFakeUsers = async (req, res) => {
+const createFakeUsers = async (numItems = 20) => {
     try {
-        const numItems = req?.params.numItems || 10;
 
         let users = [];
 
@@ -102,7 +101,6 @@ const createFakeUsers = async (req, res) => {
             
             const body = {...data, password}
     
-            console.log(body)
             const user = await User.create(body);
 
             if(user){
@@ -110,11 +108,6 @@ const createFakeUsers = async (req, res) => {
             }
             
         }
-        
-        res?.status(200).send({
-            users
-        })
-        // const user = await User.create(body);
 
 
     }catch(e){
@@ -123,7 +116,7 @@ const createFakeUsers = async (req, res) => {
     
 }
 
-// createFakeUsers();
+// createFakeUsers(50);
 
 
 export {

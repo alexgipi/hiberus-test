@@ -1,11 +1,7 @@
 import mongoose from 'mongoose';
 
-const DB_NAME = 'hiberus_test_db';
 
-const DB_URI = `mongodb://localhost:27017/${DB_NAME}`;
-
-
-export const connectDB = () => {
+export const connectDB = (DB_URI) => {
     mongoose.connect(
         DB_URI,
         {
